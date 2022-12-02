@@ -1,5 +1,4 @@
-# 코딩테스트 연습
-## JOIN
+## ORACLE JOIN
 ### 5월 식품들의 총매출 조회하기
 
 <a href="https://school.programmers.co.kr/learn/courses/30/lessons/131117">문제</a>
