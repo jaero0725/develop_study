@@ -54,4 +54,9 @@ Failed to set time: Automatic time synchronization is enabled
  ```shell
 [zeroco@localhost ~]$ timedatectl set-ntp yes
 [zeroco@localhost ~]$ timedatectl set-ntp no
+
+[zeroco@localhost ~]$ date
+Sun Jan 29 16:49:51 KST 2023
+
 ```
+
