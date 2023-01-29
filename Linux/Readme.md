@@ -64,8 +64,61 @@ abc.txt  cba.txt
 
 ## 사용자 관리와 파일 속성 
 - 리눅스에선 파일 관리를 하기 위해 파일 속성에 대해서 알아야한다. 다중 사용자 시스템인 리눅스에서 사용ㅈ아를 관리하는 방법에 대해서 알아야 함
-### 사용자와 그룹 
+### 1. 사용자와 그룹 
 > 리눅스는 다중 사용자 시스템이다.(Multi-user-system) : 즉 1대의 리눅스에 사용자 여러명이 동시에 접속해서 사용할 수 있는 시스템이다.<br>
 > 리눅스를 설치하면 기본적으로 root라는 이름을 가진 슈퍼 유저가 있다.<br>
 > 이 root 사용자는 시스템의 모든 작업을 실행할 수 있는 권한이 있다. 또한 시스템에 접속할 수 잇는 사용자를 생성할 수 있는 권한도 있다. <br>
 > 그런데 모든 사용자는 혼자서 존재하는 것이 아니라 하나 이상의 그룹에 소속되어 있어야 한다. <br>
+
+vi 에디터로 /etc/passwd 파일 확인
+
+```shell
+root@localhost etc]# cat passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+polkitd:x:999:998:User for polkitd:/:/sbin/nologin
+libstoragemgmt:x:998:995:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+colord:x:997:994:User for colord:/var/lib/colord:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+saned:x:996:993:SANE scanner daemon user:/usr/share/sane:/sbin/nologin
+gluster:x:995:992:GlusterFS daemons:/run/gluster:/sbin/nologin
+saslauth:x:994:76:Saslauthd user:/run/saslauthd:/sbin/nologin
+abrt:x:173:173::/etc/abrt:/sbin/nologin
+setroubleshoot:x:993:990::/var/lib/setroubleshoot:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/proc:/sbin/nologin
+pulse:x:171:171:PulseAudio System Daemon:/var/run/pulse:/sbin/nologin
+radvd:x:75:75:radvd user:/:/sbin/nologin
+chrony:x:992:987::/var/lib/chrony:/sbin/nologin
+unbound:x:991:986:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+qemu:x:107:107:qemu user:/:/sbin/nologin
+tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
+sssd:x:990:984:User for sssd:/:/sbin/nologin
+usbmuxd:x:113:113:usbmuxd user:/:/sbin/nologin
+geoclue:x:989:983:User for geoclue:/var/lib/geoclue:/sbin/nologin
+ntp:x:38:38::/etc/ntp:/sbin/nologin
+gdm:x:42:42::/var/lib/gdm:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+gnome-initial-setup:x:988:982::/run/gnome-initial-setup/:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+zeroco:x:1000:1000:ZEROCO01:/home/zeroco:/bin/bash
+zerco_test:x:1001:1001:ZEROCO02:/home/zerco_test:/bin/bash
+
+```
+- 여러명의 사용자가 보임. root사용자부터, tcpdump까지 표준사용자이다. 
