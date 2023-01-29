@@ -113,8 +113,37 @@ Complete!
 ![image](https://user-images.githubusercontent.com/55049159/215313558-7407fbc5-00a3-48dc-8e21-023d133b750c.png)
 
 ```shell
--- cat 명령어를 사용하여 같은 시스템 사욪아를 제외하고 보는법 
+-- cat 명령어를 사용하여 같은 시스템 사용자를 제외하고 보는법 
 [root@localhost /]# cat /etc/passwd | awk -F: '{if($3>=1000 && $3 <=60000) print $0}'
 zeroco:x:1000:1000:ZEROCO01:/home/zeroco:/bin/bash
 
 ```
+
+## 사용자 정보 수정
+```shell
+* 사용자 명 변경 : 로그인한 사용자를 변경할 수 있다. (권장x)
+[root@localhost /] # usermod zeroco -l zeroco2
+> 사용자 계정을 변경 
+
+* 이름 변경 : 이름은 코멘트를 변경하는 것이다.
+[root@localhost /] # usermod zeroco -c "zeroco22"
+
+* 암호변경 
+[root@localhost /] passwd zeroco
+Changing password for user test.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+Sorry, passwords do not match.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+
+* 홈디렉토리 변경
+[root@localhost /] usermod zeroco -d "home/zeroco"
+
+* 로그인 쉘 변경
+[root@localhost /] usermod zeroco -s "/bin/csh"
+
+```
+
