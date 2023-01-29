@@ -5,10 +5,10 @@
 
 ```shell
 [zeroco@localhost ~]$ timedatectl
-      Local time: Sat 2023-01-28 23:39:18 PST
-  Universal time: Sun 2023-01-29 07:39:18 UTC
+      Local time: Sat 2023-01-28 23:39:18 PST -- 현재시간
+  Universal time: Sun 2023-01-29 07:39:18 UTC -- 협정세계시
         RTC time: Sun 2023-01-29 07:39:18
-       Time zone: America/Los_Angeles (PST, -0800)
+       Time zone: America/Los_Angeles (PST, -0800)  -- 시간대 
      NTP enabled: yes
 NTP synchronized: yes
  RTC in local TZ: no
