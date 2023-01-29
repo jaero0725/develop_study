@@ -73,7 +73,7 @@ abc.txt  cba.txt
 vi 에디터로 /etc/passwd 파일 확인
 
 ```shell
-root@localhost etc]# cat passwd
+[root@localhost etc]# cat passwd
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin
@@ -122,3 +122,10 @@ zerco_test:x:1001:1001:ZEROCO02:/home/zerco_test:/bin/bash
 
 ```
 - 여러명의 사용자가 보임. root사용자부터, tcpdump까지 표준사용자이다. 
+
+``` shell
+* 의미 
+사용자 이름 : 암호 : 사용자 ID : 사용자소속된 그룹 ID :전체이름 : 홈디렉터리 : 기본셸
+zeroco:x:1000:1000:ZEROCO01:/home/zeroco:/bin/bash
+
+```
