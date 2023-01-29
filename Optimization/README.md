@@ -16,7 +16,7 @@ select /*+ parallel(8) */ ..
 /*+ ORDERED INDEX(A "인덱스네임") USE_NL(B) */     
 ```
 
-=> 90만건에서도 timeout나는 쿼리 -> 0.8초안으로 변경 완료함 
+=> 90만건에서도 timeout(30sec) 나는 쿼리 -> 0.6sec안으로 변경 완료함 
 
 ### Query 작성 팁
 #### 쿼리 성능 향상을 위한 부분
