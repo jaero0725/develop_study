@@ -145,5 +145,15 @@ passwd: all authentication tokens updated successfully.
 * 로그인 쉘 변경
 [root@localhost /] usermod zeroco -s "/bin/csh"
 
+* 사용자 그룹확인
+[root@localhost home]# groups zeroco
+zeroco : zeroco
+
+* 사용자 그룹추가
+[root@localhost home]# usermod -a -G zeroco zeroco2
+[root@localhost home]# groups zeroco2
+
+* 사용자 삭제 
+[root@localhost home]# userdel -r zeroco2
 ```
 
