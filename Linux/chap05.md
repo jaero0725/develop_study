@@ -1,4 +1,4 @@
-# CentOS 기본설정
+# chap05. CentOS 기본설정
 
 ## 5.2.2 timedatectl 명령어를 사용한 설정
 #### 1) 시간정보 확인
