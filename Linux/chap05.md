@@ -39,4 +39,19 @@ Asia/Seoul
 [zeroco@localhost ~]$ timedatectl set-timezone Asia/Seoul
 
 ```
+### 4) RTC 하드웨어 시계 시간설정
+- 시스템에서 하드웨어 시계를 사용하게 설정하고, 날짜와 시간을 설정한 다음에 시스템에서 하드웨어 시계를 사용하지 않게 하는 것
 
+```shell
+[zeroco@localhost ~]$ timedatectl set-local-rtc yes
+[zeroco@localhost ~]$ timedatectl set-time "2023-01-29 16:29:35"
+Failed to set time: Automatic time synchronization is enabled
+[zeroco@localhost ~]$ timedatectl set-local-rtc no
+```
+
+### 5) 시간자동 동기화
+- timedatectl 명령어는 NTP 를 사용하여 원격지에 잇는 타임서버에서 시간을 가져와 시스템 시계와 자동으로 동기화 시킬 수 있다. 
+ ```shell
+[zeroco@localhost ~]$ timedatectl set-ntp yes
+[zeroco@localhost ~]$ timedatectl set-ntp no
+```
