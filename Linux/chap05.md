@@ -19,5 +19,24 @@ NTP synchronized: yes
  Next DST change: DST begins (the clock jumps one hour forward) at
                   Sun 2023-03-12 01:59:59 PST
                   Sun 2023-03-12 03:00:00 PDT
-[zeroco@localhost ~]$ 
 ```
+### 2) 날짜와 시간 모두 설정 
+```shell
+[zeroco@localhost ~]$ timedatectl set-time '2023-01-29 16:41:30'
+Failed to set time: Automatic time synchronization is enabled
+== 안됨
+```
+
+### 3) 시간대(Time zone) 변경
+```shell
+[zeroco@localhost ~]$ timedatectl list-timezones | grep Asia
+Asia/Aden
+Asia/Almaty
+Asia/Amman
+...
+Asia/Seoul
+...
+[zeroco@localhost ~]$ timedatectl set-timezone Asia/Seoul
+
+```
+
