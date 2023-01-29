@@ -6,5 +6,5 @@
 ### 4. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/QueryTuning"> SQL 튜닝 기초 </a>
 
 # :computer: Infra 공부하기
-###  <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Linux"> Linux </a>
-###  <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Docker"> Docker </a>
+###  <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Linux"> 1. 리눅스 기초 </a>
+###  <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Docker"> 2. 도커와 쿠버네티스를 활용한 컨테이너 관리 </a>
