@@ -111,3 +111,10 @@ Complete!
 -- 아래 창이뜸
 ```
 ![image](https://user-images.githubusercontent.com/55049159/215313558-7407fbc5-00a3-48dc-8e21-023d133b750c.png)
+
+```shell
+-- cat 명령어를 사용하여 같은 시스템 사욪아를 제외하고 보는법 
+[root@localhost /]# cat /etc/passwd | awk -F: '{if($3>=1000 && $3 <=60000) print $0}'
+zeroco:x:1000:1000:ZEROCO01:/home/zeroco:/bin/bash
+
+```
