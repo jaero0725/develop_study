@@ -29,17 +29,11 @@ Password:
 [root@localhost /]# yum install system-config-users
 Loaded plugins: fastestmirror, langpacks
 You need to be root to perform this command.
-[zeroco@localhost ~]$ ^C
-[zeroco@localhost ~]$ cd ..
-[zeroco@localhost home]$ cd ..
-[zeroco@localhost /]$ cd ..
 [zeroco@localhost /]$ yum install system-config-users
 Loaded plugins: fastestmirror, langpacks
 You need to be root to perform this command.
-[zeroco@localhost /]$ ^C
 [zeroco@localhost /]$ su
 Password: 
-[root@localhost /]# ^C
 [root@localhost /]# yum install system-config-users
 Loaded plugins: fastestmirror, langpacks
 Loading mirror speeds from cached hostfile
@@ -80,7 +74,40 @@ Install  1 Package (+3 Dependent packages)
 
 Total download size: 809 k
 Installed size: 3.9 M
-Is this ok [y/d/N]: ^Cy
+Is this ok [y/d/N]: y
 Downloading packages:
+warning: /var/cache/yum/x86_64/7/updates/packages/system-config-users-1.3.5-5.el7_9.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@anaconda)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : rarian-0.8.1-11.el7.x86_64                                                                                              1/4 
+  Installing : rarian-compat-0.8.1-11.el7.x86_64                                                                                       2/4 
+  Installing : system-config-users-docs-1.0.9-6.el7.noarch                                                                             3/4 
+  Installing : system-config-users-1.3.5-5.el7_9.noarch                                                                                4/4 
+  Verifying  : system-config-users-1.3.5-5.el7_9.noarch                                                                                1/4 
+  Verifying  : rarian-compat-0.8.1-11.el7.x86_64                                                                                       2/4 
+  Verifying  : rarian-0.8.1-11.el7.x86_64                                                                                              3/4 
+  Verifying  : system-config-users-docs-1.0.9-6.el7.noarch                                                                             4/4 
 
+Installed:
+  system-config-users.noarch 0:1.3.5-5.el7_9                                                                                               
+
+Dependency Installed:
+  rarian.x86_64 0:0.8.1-11.el7          rarian-compat.x86_64 0:0.8.1-11.el7          system-config-users-docs.noarch 0:1.0.9-6.el7         
+
+Complete!
+
+
+-- 사용자 리스트 확인
+[root@localhost /] system-config-users
+-- 아래 창이뜸
 ```
+![image](https://user-images.githubusercontent.com/55049159/215313558-7407fbc5-00a3-48dc-8e21-023d133b750c.png)
