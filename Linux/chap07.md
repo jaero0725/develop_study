@@ -157,3 +157,27 @@ zeroco : zeroco
 [root@localhost home]# userdel -r zeroco2
 ```
 
+## 관리자 권한 전환
+- 보안상의 이유로 root사용자로의 직접 로그인을 권장하지 않고 일반 사요자로 로그인 한 다음 필요시 root권한으로 작업하게 하고 있다. 
+
+```shell
+root 권한으로 전환
+[root@localhost home]# su zeroco
+[zeroco@localhost home]$ sudo -s
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for zeroco: 
+zeroco is not in the sudoers file.  This incident will be reported.
+
+[zeroco@localhost home]$ su root
+Password: 
+[root@localhost home]# su -
+Last login: Sun Jan 29 17:26:01 KST 2023 on pts/0
+
+```
