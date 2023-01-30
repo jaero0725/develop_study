@@ -208,5 +208,60 @@ zeroco:x:1000:zeroco
 zerco_test:x:1001:
 
 * 의미
-그룸 이름 : 비밀번호 : 그룹 id : 그룹에 속한 사용자 이름 
+그룹 이름 : 비밀번호 : 그룹 id : 그룹에 속한 사용자 이름 
+```
+
+```shell
+디렉토리, 파일 복사
+> cp -R srcdir destdir
+
+
+링크
+
+하드링크
+- ref 필드 주목 : ref-1 if 0 이면 삭제됨 
+- 원본이든 복사본이든 hard link이면 그 개념이 애매해짐 
+- 하드링크는 파일에만 적용됨
+
+소프트 링크 (심볼릭 링크)
+- 바로가기 버튼
+- 링크파일이 링크 파일을 참조하는 방법, 파일 디렉토리 든 상관 없음
+- 오픈소스 라이버리에서 적용됨 
+
+[root@localhost Public]# ls
+bbb  cba.txt  testDir
+[root@localhost Public]# touch library.0.1.so
+[root@localhost Public]# ln -s library0.1.so library.so
+[root@localhost Public]# ls -l
+total 0
+-rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:20 bbb
+-rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:21 cba.txt
+-rw-r--r--. 1 root   root    0 Jan 30 23:19 library.0.1.so
+lrwxrwxrwx. 1 root   root   13 Jan 30 23:19 library.so -> library0.1.so
+drwxrwxr-x. 2 zeroco zeroco 26 Jan 29 22:24 testDir
+[root@localhost Public]# touch library.0.2.so
+[root@localhost Public]# rm - f library.so
+rm: cannot remove ‘-’: No such file or directory
+rm: cannot remove ‘f’: No such file or directory
+rm: remove symbolic link ‘library.so’? ls
+[root@localhost Public]# ^C
+[root@localhost Public]# ls
+bbb  cba.txt  library.0.1.so  library.0.2.so  library.so  testDir
+[root@localhost Public]# ls -l
+total 0
+-rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:20 bbb
+-rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:21 cba.txt
+-rw-r--r--. 1 root   root    0 Jan 30 23:19 library.0.1.so
+-rw-r--r--. 1 root   root    0 Jan 30 23:20 library.0.2.so
+lrwxrwxrwx. 1 root   root   13 Jan 30 23:19 library.so -> library0.1.so
+drwxrwxr-x. 2 zeroco zeroco 26 Jan 29 22:24 testDir
+[root@localhost Public]# ls -li
+total 0
+   76999 -rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:20 bbb
+   77000 -rw-rw-r--. 1 zeroco zeroco  0 Jan 29 22:21 cba.txt
+   76910 -rw-r--r--. 1 root   root    0 Jan 30 23:19 library.0.1.so
+   76912 -rw-r--r--. 1 root   root    0 Jan 30 23:20 library.0.2.so
+   76911 lrwxrwxrwx. 1 root   root   13 Jan 30 23:19 library.so -> library0.1.so
+51652754 drwxrwxr-x. 2 zeroco zeroco 26 Jan 29 22:24 testDir
+
 ```
