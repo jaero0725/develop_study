@@ -22,7 +22,7 @@
 
 ### pwd : Print Working Directory의 약자로, 현재 디렉터리의 전체 경로를 화면에 보여준다.
 ``` shell
-[root@localhost /]# pwd
+[root@lㅌocalhost /]# pwd
 /
 
 ```
@@ -265,3 +265,5 @@ total 0
 51652754 drwxrwxr-x. 2 zeroco zeroco 26 Jan 29 22:24 testDir
 
 ```
+![image](https://user-images.githubusercontent.com/55049159/215502925-a0bcd068-79c5-488e-8d5c-9bf5d068d51a.png)
+
