@@ -22,7 +22,7 @@
 
 ### pwd : Print Working Directory의 약자로, 현재 디렉터리의 전체 경로를 화면에 보여준다.
 ``` shell
-[root@lㅌocalhost /]# pwd
+[root@localhost /]# pwd
 /
 
 ```
