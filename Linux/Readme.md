@@ -267,3 +267,19 @@ total 0
 ```
 ![image](https://user-images.githubusercontent.com/55049159/215502925-a0bcd068-79c5-488e-8d5c-9bf5d068d51a.png)
 
+### cat
+
+``` shell
+
+> cat 파일이름 | move
+> cat source > target : 덮어쓰기
+> cat source >> target : 마지막에 붙여넣기함
+
+```
+
+- vi system.log => less system.log
+=> 시스템 장애상황시 용량큰 로그를 open 하면 부하생길수 있으므로 log file open 시 사용한다.
+
+- tar cvfz target.tar.gz *
+- create -> c 압축파일생성
+- gzip -> z gzip 으로 압축함. 
