@@ -66,12 +66,15 @@ WHERE
  - 자주 쓰는 데이터는 고가의 빠른 스토리지
  - 잘 안쓰는 데이터는 저가의 느린 스토리지
  
- # 파티션의 종류 
- 1) Range Partition
+```
+
+ ## 파티션의 종류 
+ ### 1) Range Partition
  - Range Partition 은 범위로 구분되는 파티션 테이블 입니다.
  - 범위(Range)에는 숫자, 날짜, 문자가 모두 가능합니다.
- 
-  - 이런식으로 생성
+
+``` sql
+
    create table SALES (
     sales_no       number,
     sale_year      number,
@@ -88,15 +91,8 @@ WHERE
     partition SALES_P3 values less than (maxvalue)
   );
   
-  - 나는 이렇게 사용함 
+  -- 나는 이렇게 사용함 
 
-  
- 2) List Partition
- 3) Hash Partition
- 
-```
-
-``` sql
   CREATE TABLE ZEROCO.TB_ZERO2179S(
     PRC_DT  CHAR(8) NOT NULL
     ...
@@ -122,3 +118,66 @@ WHERE
 
 ```
 
+ 
+### 2) List Partition
+- List Partition 은 범위가 아닌 특정한 값으로 구분되는 파티션 테이블 입니다.
+- 주로 특정 구분자로 데이터의 구분이 가능한 경우 사용합니다.
+
+``` sql
+create table SALES (
+  sales_no       number,
+  sale_year      number,
+  sale_month     number,
+  sale_day       number,
+  customer_name  varchar2(30),
+  birth_date     date,
+  price          number,
+  state          varchar2(2)
+)
+partition by list (state)
+(
+  partition P_EAST    values ('MA','NY','CT','NH','ME','MD','VA','PA','NJ'),
+  partition P_WEST    values ('CA','AZ','NM','OR','WA','UT','NV','CO'),
+  partition P_SOUTH   values ('TX','KY','TN','LA','MS','AR','AL','GA'),
+  partition P_CENTRAL values ('OH','ND','SD','MO','IL','MI','IA')
+);
+
+-- 4개 파티션 생성 
+
+insert into SALES values (1, 2004, 05, 02, 'Sophia', to_date('19740502','yyyymmdd'), 65000, 'WA');
+insert into SALES values (2, 2005, 03, 02, 'Emily',  to_date('19750302','yyyymmdd'), 23000, 'OR');
+insert into SALES values (3, 2006, 08, 02, 'Olivia', to_date('19760802','yyyymmdd'), 34000, 'TX');
+insert into SALES values (4, 2007, 02, 02, 'Amelia', to_date('19770202','yyyymmdd'), 12000, 'CA');
+insert into SALES values (5, 2008, 04, 02, 'Chloe',  to_date('19780402','yyyymmdd'), 55000, 'FL');
+
+-- 이렇게 하면 에러남 ORA-14400
+
+
+create table SALES (
+  sales_no       number,
+  sale_year      number,
+  sale_month     number,
+  sale_day       number,
+  customer_name  varchar2(30),
+  birth_date     date,
+  price          number,
+  state          varchar2(2)
+)
+partition by list (state) 
+(
+  partition P_EAST    values ('MA','NY','CT','NH','ME','MD','VA','PA','NJ'),
+  partition P_WEST    values ('CA','AZ','NM','OR','WA','UT','NV','CO'),
+  partition P_SOUTH   values ('TX','KY','TN','LA','MS','AR','AL','GA'),
+  partition P_CENTRAL values ('OH','ND','SD','MO','IL','MI','IA'),
+  partition P_NULL    values (null),
+  partition P_UNKNOWN values (default) -- LIST default 해줘야됨
+);
+
+``` 
+### 3) Hash Partition
+- Hash Partition 은 해시함수에 의해 자동으로 파티션 갯수만큼 데이터가 분할되는 파티션 테이블 입니다.
+- 해시 파티션키로 사용할 수 있는 컬럼은 아무 타입이나 가능합니다. 숫자, 문자, 날짜 타입 모두 다 가능합니다.
+- Range 나 List 파티션과 달리 Hash 파티션의 경우에는 내 데이터가 어느 파티션으로 들어갈 지 알 수 없기 때문에,
+- 전혀 관리 목적에는 맞지 안ㅅ는다.
+- Hash 파티션을 사용하는 이유는 데이터를 여러 위치에 분산배치해서 Disk I/O 성능을 개선하기 위함입니다.
+- 스토리지의 특정 위치에 I/O 가 몰리는 현상을 핫블럭(Hot Block) 현상이라고 하는데, 이때 Reverse Index 와 함께 Hash Partition 이 해결책!
