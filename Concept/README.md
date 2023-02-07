@@ -89,6 +89,14 @@ WHERE
   );
   
   - 나는 이렇게 사용함 
+
+  
+ 2) List Partition
+ 3) Hash Partition
+ 
+```
+
+``` sql
   CREATE TABLE ZEROCO.TB_ZERO2179S(
     PRC_DT  CHAR(8) NOT NULL
     ...
@@ -111,9 +119,6 @@ WHERE
   ...
   ) LOCAL
   ...
-  
- 2) List Partition
- 3) Hash Partition
- 
+
 ```
 
