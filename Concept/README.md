@@ -24,7 +24,7 @@ WHERE
 
 ```
 
-## 📋 Partition Table 
+## 📋 Oracle Partition Table 
 ### Partition
 ![image](https://user-images.githubusercontent.com/55049159/217259224-b6656c55-7b15-4fd8-8d08-e53abbdef084.png)
  - 오라클 파티션테이블은 하나의 큰 테이블을 물리적으로 나눠놓은 것입니다.
