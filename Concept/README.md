@@ -178,3 +178,93 @@ partition by list (state)
 - 전혀 관리 목적에는 맞지 
 - Hash 파티션을 사용하는 이유는 데이터를 여러 위치에 분산배치해서 Disk I/O 성능을 개선하기 위함입니다.
 - 스토리지의 특정 위치에 I/O 가 몰리는 현상을 핫블럭(Hot Block) 현상이라고 하는데, 이때 Reverse Index 와 함께 Hash Partition 이 해결책!
+
+``` sql
+
+
+create table SALES (
+  sales_no       number,
+  sale_year      number,
+  sale_month     number,
+  sale_day       number,
+  customer_name  varchar2(30),
+  birth_date     date,
+  price          number,
+  state          varchar2(2)
+)
+partition by hash (birth_date) 
+partitions 4; -- 파티션 4개
+
+~ 파티션 생성시 파티션 명 지정할 경우?
+partition by hash (sales_no) 
+(
+  partition SALES_P1, 
+  partition SALES_P2,
+  partition SALES_P3,
+  partition SALES_P4
+);
+
+insert into SALES values (1, 2004, 05, 02, 'Sophia', to_date('19740502','yyyymmdd'), 65000, 'WA');
+insert into SALES values (2, 2005, 03, 02, 'Emily',  to_date('19750302','yyyymmdd'), 23000, 'OR');
+insert into SALES values (3, 2006, 08, 02, 'Olivia', to_date('19760802','yyyymmdd'), 34000, 'TX');
+insert into SALES values (4, 2007, 02, 02, 'Amelia', to_date('19770202','yyyymmdd'), 12000, 'CA');
+insert into SALES values (5, 2008, 04, 02, 'Chloe',  to_date('19780402','yyyymmdd'), 55000, 'FL');
+```
+
+## 오라틀 파티션 인덱스
+1) Local Partitioned Index (로컬 파티션 인덱스)
+- 로컬 인덱스는 파티션테이블과 똑같은 구성으로 인덱스를 파티션하는 것
+- 즉, 인덱스의 파티션을 구분하는 파티션키를 테이블의 파티션키와 같은 것을 사용하는다는 의미
+
+``` sql
+-- 1) 파티션 테이블 생성
+create table SALES (
+  sales_no       number,
+  sale_year      number,
+  sale_month     number,
+  sale_day       number,
+  customer_name  varchar2(30),
+  birth_date     date,
+  price          number
+)
+partition by range (sales_no)
+(
+  partition SALES_P1 values less than (3),
+  partition SALES_P2 values less than (5),
+  partition SALES_P3 values less than (maxvalue)
+);
+
+-- 2) 로컬 파티션 인덱스 생성
+create index IDX_SALES_01 on SALES (sales_no) LOCAL;
+
+-- 보통의 인덱스 생성문 SQL 맨뒤에 LOCAL 키워드 붙이기
+
+```
+
+2) Global Partitioned Index (전역 파티션 인덱스, 글로벌 인덱스)
+
+``` sql
+
+-- 1) 파티션 테이블 생성
+create table SALES (
+  sales_no       number,
+  sale_year      number,
+  sale_month     number,
+  sale_day       number,
+  customer_name  varchar2(30),
+  birth_date     date,
+  price          number
+)
+partition by range (sales_no)
+(
+  partition SALES_P1 values less than (3),
+  partition SALES_P2 values less than (5),
+  partition SALES_P3 values less than (maxvalue)
+);
+
+-- 2) 글로벌 파티션 인덱스 생성
+create index IDX_SALES_02 on SALES (customer_name) GLOBAL
+partition by hash (customer_name)
+partitions 4;
+
+```
