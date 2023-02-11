@@ -1,3 +1,4 @@
+# Oracle Index의 장점과 단점 
 ## Advantages of Oracle Database Index:
 
 1) Improves Query Performance: Indexes can significantly improve the performance of SELECT queries by allowing the database to retrieve the required data much faster.
