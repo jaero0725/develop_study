@@ -253,3 +253,12 @@ partition by hash (customer_name)
 partitions 4;
 
 ```
+
+## Partitioning 성능 비교
+### Index Range Scan과 파티션 성능비교 
+- 위 그림은 Index Range Scan을 그림으로 표현한 것이다. 파티션도 조건절에 Key가 들어와야 특정 파티션만 읽을 수 있으므로 성능이 좋아진다. 그렇다면 파티션을 적용하는 것 대신 인덱스를 걸면 더빠르지 않을거라는 생각을 할 수 있다. <br>
+
+- Index Range Scan동작에서는 Root -> Branch -> Leaf 로 내려가면서 범위조회를 순차적으로 Scan을 하면서 ROWID를 가지고 Random Access Block IO 하는 형태이기 떄문에, 클러스터링 백터가 최악일 경우 조회건수 만큼의 IO가 발생 할 수 있다.<br>
+
+- 만약 특정 조건으로 넓은 범위를 읽어야 하고 그 조건이 파티션 키이면 해당 파티션만 FULL SCAN으로 Multi Block IO를 할 수 있끼 떄문에 Index Scan보다 훨씬 유리하다. 
+Full Scan이므로 Parallel도 가능하다. <br>
