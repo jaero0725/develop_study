@@ -7,4 +7,4 @@
 
 # :computer: Infra 공부하기
 ### 1. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Linux">리눅스 기초 </a>
-### 2. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/Docker">도커와 쿠버네티스를 활용한 컨테이너 관리 </a>
+### 2. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/docker%26Kubernates">도커와 쿠버네티스를 활용한 컨테이너 관리 </a>
