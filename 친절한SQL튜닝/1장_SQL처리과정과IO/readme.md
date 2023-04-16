@@ -98,4 +98,8 @@ DBMS 블록 사이즈가 얼마건 간에 OS 단에서는 보통 1MB 단위로 I
 
 오라클에서 손수레에 한 번에 담는 양은 db_file_bultiblock_read_count 파라미터로 정한다.
 
+![image](https://user-images.githubusercontent.com/55049159/232277165-47ef3a30-a333-42fe-8d4a-a8ac3a301846.png)
+
 ```
+
+
