@@ -78,7 +78,7 @@ V$SGA 뷰를 통해 확인할 수 있음.
 ```
 ![image](https://user-images.githubusercontent.com/55049159/232276434-3ffec2e6-959b-4486-8ded-17621c5ffa07.png)
 
-## Single Block I/O vs Multi Block I/O
+## Single Block I/O vs Multi Block I/O 차이점에 대해서 설명?
 
 ```
 한 번에 한 블록씩 요청해서 메모리에 적재하는 방식을 Single Block I/O라고 한다.
@@ -101,3 +101,7 @@ DBMS 블록 사이즈가 얼마건 간에 OS 단에서는 보통 1MB 단위로 I
 ```
 
 ![image](https://user-images.githubusercontent.com/55049159/232277165-47ef3a30-a333-42fe-8d4a-a8ac3a301846.png)
+
+
+##  Multi Block I/O 중간에 왜 Single Block I/O가 나타나는가?
+![image](https://user-images.githubusercontent.com/55049159/232277591-c148ac9d-3087-4f04-a52f-6a7fad19b549.png)
