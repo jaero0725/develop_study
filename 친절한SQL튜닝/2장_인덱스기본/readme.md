@@ -61,3 +61,25 @@ FROM 고객
 WHERE (전화번호 = :tel_no OR 고객명 =:cust_nm)
 ```
 
+IN 조건절일 경우도 Index Range Scan 하지 못한다. <br>
+WHERE 전화번호 IN (:tel_no1, :tel_no2) <br>
+이 경우에도 불가능하다. <br>
+IN 조건은 OR 조건을 표현하는 다른 방식일 뿐이다. <br>
+SQL을 아래와 같이 UNION ALL방식으로 작성하면, 각 브랜치 별로 인덱스 스캔시작점을 찾을 수 있다.<br>
+
+```sql
+
+SELECT * FROM 고객
+WHERE 전화번호 = :tel_no1
+UNION ALL
+SELECT * FROM 고객
+WHERER 전화번호 = :tel_no2
+
+```
+
+```
+'인덱스를 정상적으로 사용한다'는 표현은 리프 블록에서 스캔 시작점을 찾아 거기서부터 스캔하다가 중간에 멈추는 것을 의미한다.
+인덱스 컬럼이 가공되면 Index Range Scan하지 못하게 된다. 
+단, OR 또는 IN 조건절은 옵티마이저의 쿼리 변환 기능을 통해 INDEX RNAGE SCAN으로 처리 되기도 한다.  
+
+```
