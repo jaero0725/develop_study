@@ -31,4 +31,33 @@
 ```
 인덱스 컬럼을 가공했을 때 인덱스를 정상적으로 사용할 수 없는 이유는 인덱스 스캔 시작점을 찾을 수 없기 때문이다. 
 인덱스 스캔 시작지점과 종료 시점이 있는데 컬럼이 변경된다면 인덱스 Range Scan 하지 못한다. 
+
+예를들어
+
+where substr(생년월일, 5, 2) = '05'
+where nvl(주문수량, 0) < 100
+where 업체명 like '%대한%'
+where (전화번호 = :tel_no OR 고객명 = :cust_nm)
+
+모두 Range Scan 할 수 없다. 
 ```
+
+``` sql
+SELECT * FROM 고객
+WHERE 고객명 = :cust_nm
+UNION ALL
+SELECT * FROM 고객
+WHERER 전화번호 = :tel_no
+AND (고객명 <> :cust_nm OR 고객명 IS NULL)
+
+```
+OR 조건식을 SQL 옵티마이저가 위와 같은 형태로 변환 할 수 있는데 이를 'OR Expansion' 이라고 한다.<br> 
+user_concat힌트로 유도할 수 있다. <br> 
+OR Expansion을 유도할 때 Index Range Scan을 유도 할 수 있다. <br>
+
+``` sql
+SELECT /*+ USE CONCAT */ 
+FROM 고객
+WHERE (전화번호 = :tel_no OR 고객명 =:cust_nm)
+```
+
