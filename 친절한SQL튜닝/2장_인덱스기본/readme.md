@@ -132,5 +132,37 @@ SQL에 ORDER BY가 있어도 정렬 연산이 수행되지 않는다.
 
 ```
 
- 
+ ## 인덱스 확장 기능 사용법
+ ### Index Range Scan
+ ![image](https://user-images.githubusercontent.com/55049159/233653181-7113edb9-48ed-484f-9e84-cf5366c9225d.png)
+```
+ B*Tree 인덱스의 가장 일반적이고 정상적인 형태의 액세스 방식이다.
+ 인덱스 루트에서 리프 블록까지 수직적으로 탐색한 후 ‘필요한 범위만’ 스캔한다.
+ 성능은 인덱스 스캔 범위, 테이블 액세스 횟수를 얼마나 줄일 수 있는냐로 결정된다.
+```
+### Index Full Scan
+![image](https://user-images.githubusercontent.com/55049159/233653239-10648e2c-a641-4c83-8bd0-8b462e1b0303.png)
+```
+수직적 탐색없이 인덱스 리프 블록을 처음부터 끝까지 수평적으로 탐색하는 방식이다.
+```
+
+### Index Unique Scan
+![image](https://user-images.githubusercontent.com/55049159/233653318-36dd1aee-fafd-482a-a623-79ef97de4217.png)
+
+```
+수직적 탐색으로만 데이터를 찾는 스캔 방식으로서, Unique 인덱스를 ‘=’ 조건으로 탐색하는 경우에 작동한다.
+```
+
+### Index Fast Full Scan
+```
+말 그대로 Index Fast Scan은 Index Full Scan보다 빠르다. 
+Index Fast Full Scan이 Index Full Scan보다 빠른 이유는, 논리적인 인덱스 트리 구조를 무시하고 인덱스 세그먼트 전체를 Multiblock I/O 방식으로 스캔하기 때문이다.
+```
+![image](https://user-images.githubusercontent.com/55049159/233653482-203b1dc0-371d-4a2f-ae3f-a14db2d09c24.png)
+
+### Index Range Scan Descending
+```
+Index Range Scan과 기본적으로 동일한 스캔 방식이며, 인덱스를 뒤에서부터 앞쪽으로 스캔하기 때문에 내림차순으로 정렬된 결과집합을 얻는다는 점만 다르다.
+```
+![image](https://user-images.githubusercontent.com/55049159/233653497-c15431e1-945d-47dd-ba5a-1fc2d6399186.png)
 
