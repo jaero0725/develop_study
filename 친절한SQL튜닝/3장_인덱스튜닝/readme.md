@@ -48,7 +48,9 @@ SQL이 참조하는 컬럼을 인덱스가 모두 포함하는 경우가 아니�
 - 인덱스 ROWID를 이요한 테이블 엑세스는 고비용 구조이므로 읽어야할 데이터가 일정량을 넘는 순가, 테이블 전체를 스캔하는 것 보다 오히려 느려진다.
 - Index Range Scan에 의한 테이블 엑세스가 Table Full Scan보다 느려지는 지점을 '인덱스 손익 분기점' 이라고 한다. 
 
-### 인덱스를 이용한 테이블 엑세스가 Table Full Scan보다 더 느려지게 만드는 핵심적이 요인
+![image](https://user-images.githubusercontent.com/55049159/233652564-2709a22c-b063-47fe-b6d6-fa8e8895741c.png)
+
+### 인덱스를 이용한 테이블 엑세스가 Table Full Scan보다 더 느려지게 만드는 핵심적인 요인
 1) Table Full Scan은 시퀀셜 엑세스인 반면, 인덱스 ROWID를 이용한 테이블 엑세스는 랜덤 엑세스 방식이다.
 2) Table Full Scan은 Mutliblock I/O인 반면, 인덱스 ROWID를 이용한 테이블 엑세스는 Single Block I/O 방식이다.
 
