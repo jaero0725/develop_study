@@ -24,7 +24,7 @@
 <tbody>
   <tr>
     <td class="tg-abip">1장 SQL 처리과정과 I/O</td>
-    <td class="tg-abip">1.1SQL 파싱과 최적화</td>
+    <td class="tg-abip">1.1 SQL 파싱과 최적화</td>
     <td class="tg-abip"><a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/친절한SQL튜닝/1장_SQL처리과정과IO">정리</a></td>
     <td class="tg-abip"><span style="font-weight:var(--base-text-weight-normal, 400);font-style:normal">✅</span></td>
   </tr>
