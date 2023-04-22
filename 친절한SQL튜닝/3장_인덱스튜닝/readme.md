@@ -70,6 +70,80 @@ NL조인을 대부분 사용한다.
 
 ```
 
+### 인덱스 컬럼 추가
+
+- 테이블 엑세스 최소화 하기 위한 방법 중 가장 일반적으로 사용하는 튜닝 기법은 -> 인덱스에 컬럼을 추가하는 것.
+
+
+#### 예시 
+
+``` sql
+
+-- IDX : EMP_X01 [DEPTNO + JOB]
+
+select /*+ index(emp emp_x01) */
+from emp
+where deptno = 30
+and sal >= 2000
+
+/*
+  이와 같은 경우, 위의 조건을 만족하는 사원이 단 한 명 뿐인데도, 이를 찾기 위해 Table Access는 과도하게 발생한다.
+  인덱스 구성을 deptno + sal 순으로 바꾸면 좋겠으나 실 운경 환경에서는 인덱스 구성을 변경하기가 어렵다.
+  필요한 인덱스를 추가하다보면 인덱스 관리 비용이 증가함은 물론 DML 부하에 따른 트랜잭션 성능 저하가 생길 수 있다.
+  이럴 경우 기존 인덱스에 sal 컬럼을 추가하ㅓ 것만으로 큰 효과를 거둘 수 있다
+*/
+```
+![image](https://user-images.githubusercontent.com/55049159/233793143-486ad1a6-0ff8-42c5-8825-8c3bc7ee3d02.png)
+
+```sql
+
+-- IDX : EMP_X01 [DEPTNO + JOB +]
+
+select /*+ index(emp emp_x01) */
+from emp
+where deptno = 30
+and sal >= 2000
+
+/*
+  이와 같은 경우, 위의 조건을 만족하는 사원이 단 한 명 뿐인데도, 이를 찾기 위해 Table Access는 과도하게 발생한다.
+  인덱스 구성을 deptno + sal 순으로 바꾸면 좋겠으나 실 운경 환경에서는 인덱스 구성을 변경하기가 어렵다.
+  필요한 인덱스를 추가하다보면 인덱스 관리 비용이 증가함은 물론 DML 부하에 따른 트랜잭션 성능 저하가 생길 수 있다.
+  
+  => 이럴 경우 기존 인덱스에 sal 컬럼을 추가하는 것만으로 큰 효과를 거둘 수 있다
+*/
+```
+
+```sql
+/*
+ 단일 테이블을 PK로 액세스할 때는 단 한건만 조회하는 것이므로 테이블 Random 액세스도 단 1회 발생
+ NL조인할 때 Inner쪽 (=right side)에서 액세스될 때는 Random 액세스 부하가 만만치 않다
+ 특히 Outer 테이블에서 Inner 테이블 쪽으로 조인 액세스가 많은 상황에서 Inner쪽 필터 조건에 의해 버려지는 레코드가 많다면 그 비효율은 매우 심각
+*/
+select /*+ ordered use_nl(d) */*
+from   emp e,
+       dept d
+where  d.deptno = e.deptno
+and    d.loc = 'NEW YORK'
+
+Rows     Row Source Operation
+-------  ---------------------------------------------------
+      3  NESTED LOOPS  (cr=25 pr=0 pw=0 time=198 us)
+     14   TABLE ACCESS FULL EMP (cr=8 pr=0 pw=0 time=111 us)
+      3   TABLE ACCESS BY INDEX ROWID DEPT (cr=17 pr=0 pw=0 time=223 us)
+     14    INDEX UNIQUE SCAN PK_DEPT (cr=3 pr=0 pw=0 time=108 us)(object id 51150)
+
+/*
+  Emp를 기준으로 NL조인하고, 조인에 성공한 14건 중 loc='NEW YORK'인 레코드만 취하므로 최종 결과 집합은 3건 뿐이다.
+  DEPT_PK인덱스에 loc 컬럼을 추가하면 불필요한 11번의 Random 액세스를 없앨 수 있지만 PK 인덱스에는 컬럼을 추가 할 수 없다.
+  PK컬럼 + 필터조건 컬럼 형태의 Non-Unique 인덱스를 추가
+  인덱스가 없다면 값이 입력될 때 마다 테이블 전체를 읽어 중복 값 존재 여부를 체크해야 하기 때문에 PK제약에는 중복 값 확인을 위한 인덱스가 반드시 필요하다.
+  중복체크를 위해 Non-Unique 인덱스를 이용하여 중복 여부를 체크하며 이때는 one-plus 스캔이 발생하는 약간의 비효율이 있을 수 있다.
+*/
+```
+
+<hr>
+[ref]
+http://www.gurubee.net/wiki/pages/28116669
 
 
 
