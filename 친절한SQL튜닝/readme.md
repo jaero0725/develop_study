@@ -15,7 +15,7 @@
 </colgroup>
 <thead>
   <tr>
-    <th class="tg-c3ow">장</th>
+    <th class="tg-c3ow">해당 장</th>
     <th class="tg-c3ow">세부내용</th>
     <th class="tg-c3ow">진행상황</th>
   </tr>
