@@ -12,4 +12,6 @@
 ### 2. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/docker%26Kubernates">도커와 쿠버네티스를 활용한 컨테이너 관리 </a>
 
 # :triangular_ruler: Spring Remind 
-### 1. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/spring"> 스프링 배치 시스템 개발 구현 </a>
+### 1. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/spring/spring_remind"> 스프링 부트 Remin </a>
+
+### 1. <a href="https://github.com/jaero0725/Database-Infra_Study/tree/main/spring/spring_batch"> 스프링 배치 시스템 구현 </a>
