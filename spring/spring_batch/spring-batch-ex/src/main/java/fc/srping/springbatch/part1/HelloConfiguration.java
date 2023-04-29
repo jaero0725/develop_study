@@ -31,7 +31,7 @@ public class HelloConfiguration {
     @Bean
     public Job helloJob(){
         return jobBuilderFactory.get("helloJob")
-                .incrementer(new RunIdIncrementer())
+                .incrementer(new RunIdIncrementer()) // RunId라는 Sequencial하게 insert?
                 .start(this.helloStep())
                 .build();
     }
