@@ -352,3 +352,13 @@ DB Connection 빈도가 높아 비교적 성능이 낮은 반면, 짧은 Connect
 페이징 단위의 결과만 메모리에 할당하기 때문에, 비교적 더 적은 메모리를 사용
 
 ```
+
+## JdbcBatchItemWriter
+- jdbcBatchItemWriter는 jdbc를 이용해 db에 writer
+- jdbcBatchItemWriter는 bulk insert/update/delete 처리
+
+``` sql
+	insert into person (name,age,address) values (1,2,3),(4,5,6) .... (10000,100001,10002) ;
+```
+
+- 단건처리가 아니기 떄문에 성능이 높다
