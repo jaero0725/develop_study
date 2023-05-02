@@ -4,3 +4,8 @@ spring:
       names: ${job.name:NONE}
     jdbc:
       initialize-schema:
+  datasource:
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      data-locations: classpath:person.sql
