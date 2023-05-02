@@ -1,4 +1,4 @@
-package fc.srping.springbatch.part1;
+package fc.batch.springbatch.part1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -52,5 +52,4 @@ public class HelloConfiguration {
 
     // 어떤 Job을 실행할지에 대한 설정이 필요.
     // env : --spring.batch.job.names=helloJob
-
 }
