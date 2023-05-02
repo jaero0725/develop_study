@@ -258,3 +258,23 @@ private Tasklet tasklet() {
                 .build();
     }
 ```
+
+### @JobScope와 @StepScope? 
+
+```
+scope 는 어떤 시점에 bean을 생성/소멸 시킬 지 bean의 lifecycle을 설정
+기본은 싱글톤 scope이다.
+
+JobScope, StepScope 
+
+```
+
+``` java
+@Scope(value = "job", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface JobScope {
+
+}
+
+```
