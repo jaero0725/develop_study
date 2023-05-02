@@ -189,3 +189,92 @@ INSERT INTO BATCH_JOB_SEQ (ID, UNIQUE_KEY) select * from (select 0 as ID, '0' as
         StepExecutionContext
         - 해당 Step에서 데이터를 공유함
 ```
+
+### Parameter
+
+- 2가지 방법
+1. JobParameters 객체 사용
+2. Spring EL
+
+#### 1. JobParameters 객체 사용
+![image](https://user-images.githubusercontent.com/55049159/235658403-55fd028b-5652-4318-aac0-76e061263321.png)
+
+``` java
+private Tasklet tasklet() {
+        List<String> items = getItems();
+
+        return ((contribution, chunkContext) -> {
+            StepExecution stepExecution = contribution.getStepExecution();
+            JobParameters jobParameters = stepExecution.getJobParameters();
+
+            String value = jobParameters.getString("chunkSize", "10");
+            int chunkSize = StringUtils.isNotEmpty(value) ? Integer.parseInt(value) : 10;
+
+            int fromIndex = stepExecution.getReadCount();
+            int toIndex = fromIndex + chunkSize;
+
+            if (fromIndex >= items.size()) {
+                return RepeatStatus.FINISHED;
+            }
+
+            // subList 메서드로 패이징 처리가능
+            List<String> subList = items.subList(fromIndex, toIndex);
+
+            log.info("task item size : {}", subList.size());
+
+            stepExecution.setReadCount(toIndex);
+
+            return RepeatStatus.CONTINUABLE;
+        });
+    }
+
+```
+#### 2. Spring EL사용
+
+``` java
+    @Bean
+    public Job chunkProcessingJob() {
+        return jobBuilderFactory.get("chunkProcessingJob")
+                .incrementer(new RunIdIncrementer())
+                .start(this.taskBaseStep())
+                .next(this.chunkBaseStep(null))
+                .build();
+    }
+
+    // null 을 return 할떄까지 반복
+    @Bean
+    @JobScope
+    public Step chunkBaseStep(@Value("{jobParameters[chunkSize]}") String chunkSize){
+        return stepBuilderFactory.get("chunkBaseStep")
+                /*
+                    paging 처리 처럼 nice 하게 처리할 수 있다.
+                    100개의 데이터를 10개씩 나눈다는 뜻.
+                    <input type , output type>
+                 */
+                .<String, String>chunk(StringUtils.isNotEmpty(chunkSize) ? Integer.parseInt(chunkSize) : 10)
+                .reader(itemReader())
+                .processor(itemProcessor())
+                .writer(itemWriter())
+                .build();
+    }
+```
+
+### @JobScope와 @StepScope? 
+
+```
+scope 는 어떤 시점에 bean을 생성/소멸 시킬 지 bean의 lifecycle을 설정
+기본은 싱글톤 scope이다.
+
+JobScope, StepScope 
+
+```
+
+``` java
+@Scope(value = "job", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface JobScope {
+
+}
+
+```
