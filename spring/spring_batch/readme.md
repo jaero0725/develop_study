@@ -266,7 +266,13 @@ scope 는 어떤 시점에 bean을 생성/소멸 시킬 지 bean의 lifecycle을
 기본은 싱글톤 scope이다.
 
 JobScope, StepScope 
+@JobScope와 @StepScope는 Spring Batch에서 사용되는 어노테이션입니다. Spring Batch는 대용량 데이터 처리를 위한 배치 작업을 지원하는 프레임워크로, 많은 양의 데이터를 처리하고, 복잡한 로직을 수행하며, 대용량 처리에 대한 안정성과 확장성을 제공합니다.
 
+@JobScope 어노테이션은 Spring Batch 작업에서 Job의 인스턴스를 생성할 때 사용됩니다. Job 인스턴스는 Spring의 ApplicationContext에 등록되며, Job 실행 전에 인스턴스가 생성됩니다. 이 어노테이션을 사용하면 Job 파라미터를 사용할 수 있으며, Job 파라미터는 Job 실행 전에 설정됩니다. 예를 들어, @JobScope를 사용하여 Job 파라미터를 주입하면, Job 실행 전에 Job 파라미터를 설정할 수 있습니다.
+
+@StepScope 어노테이션은 Step의 인스턴스를 생성할 때 사용됩니다. Step 인스턴스는 Job 실행 중에 동적으로 생성됩니다. StepScope는 Step 파라미터를 사용할 수 있으며, Step 파라미터는 Step 실행 전에 설정됩니다. 예를 들어, @StepScope를 사용하여 Step 파라미터를 주입하면, Step 실행 전에 Step 파라미터를 설정할 수 있습니다.
+
+따라서, @JobScope와 @StepScope는 Spring Batch의 Job과 Step 실행 시점에 파라미터를 주입하여 동적으로 Job과 Step을 구성할 수 있도록 합니다.
 ```
 
 ``` java
@@ -278,3 +284,18 @@ public @interface JobScope {
 }
 
 ```
+
+### ItemReader interface 구조
+![image](https://user-images.githubusercontent.com/55049159/235670183-048a12e3-100a-435a-8223-328e995c78a3.png)
+
+```
+ 배치 대상 데이터를 읽기 위한 설정
+ 
+ Step에 ItemReader는 필수
+ 기본 제공되는 ItemReader 구현체
+ - file, jdbc, jpa, hibernate, kafka, etc...
+ ItemReader 구현체가 없으면 직접 개발
+ ItemStream은 ExecutionContext로 read, write 정보를 저장
+```
+
+#### FlatFileItemReader 클래스로 파일에 저장된 데이터를 읽어 객체에 매핑 - csv 파일 read 
