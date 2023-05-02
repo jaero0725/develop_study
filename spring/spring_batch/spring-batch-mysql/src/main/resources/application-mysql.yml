@@ -1,10 +1,13 @@
 spring:
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_batch?characterEncoding=UTF-8&severTimezone=UTC
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_batch?characterEncoding=UTF-8&severTimezone=UTC&rewriteBatchedStatements=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: hansung
+  jpa:
+    hibernate:
+      ddl-auto: update
   batch:
     jdbc:
       initialize-schema: never
