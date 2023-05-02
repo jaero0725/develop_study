@@ -284,3 +284,16 @@ public @interface JobScope {
 }
 
 ```
+
+### ItemReader interface 구조
+![image](https://user-images.githubusercontent.com/55049159/235670183-048a12e3-100a-435a-8223-328e995c78a3.png)
+
+```
+ 배치 대상 데이터를 읽기 위한 설정
+ 
+ Step에 ItemReader는 필수
+ 기본 제공되는 ItemReader 구현체
+ - file, jdbc, jpa, hibernate, kafka, etc...
+ ItemReader 구현체가 없으면 직접 개발
+ ItemStream은 ExecutionContext로 read, write 정보를 저장
+```
