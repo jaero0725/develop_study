@@ -37,14 +37,6 @@ public class HelloConfiguration {
                 .build();
     }
 
-    @Bean
-    public Job helloJob2(){
-        log.info("##### [JOB 2] helloJob2 start");
-        return jobBuilderFactory.get("helloJob2")
-                .incrementer(new RunIdIncrementer()) // RunId라는 Sequencial하게 insert?
-                .start(this.helloStep())
-                .build();
-    }
     // step은 Job의 실행단위 한개의 job은 N개의 step을 갖는다.
     // step name
     // tasklet => step의 실행단위 (task 기반)

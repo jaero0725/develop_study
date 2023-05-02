@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    username: mytest
-    password: mytest
-    url: jdbc:oracle:thin:@localhost:1521/XE
-    driver-class-name: oracle.jdbc.OracleDriver
-  batch:
-    jdbc:
-      initialize-schema: never
