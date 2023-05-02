@@ -299,3 +299,54 @@ public @interface JobScope {
 ```
 
 #### FlatFileItemReader 클래스로 파일에 저장된 데이터를 읽어 객체에 매핑 - csv 파일 read 
+```java
+private FlatFileItemReader<Person> csvFileItemReader() throws Exception {
+
+        // csv -> Pesron 객체로 매핑
+        DefaultLineMapper<Person> lineMapper = new DefaultLineMapper<>();// 데이터 읽을 수 있는 설정 -> line mapper 객체 생성
+        DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+        tokenizer.setNames("id", "name", "age", "address");
+        lineMapper.setLineTokenizer(tokenizer);
+
+        lineMapper.setFieldSetMapper(fieldSet -> {
+            int id =fieldSet.readInt("id");
+            String name = fieldSet.readString("name");
+            String age = fieldSet.readString("age");
+            String address =  fieldSet.readString("address");
+
+            return new Person(id,name,age,address);
+        });
+
+        FlatFileItemReader<Person> itemReader = new FlatFileItemReaderBuilder<Person>()
+                .name("csvFileItemReader")
+                .encoding("UTF-8")
+                .resource(new ClassPathResource("test.csv"))       //resources 밑에 파일을 읽을 수 있는 클래스
+                .linesToSkip(1) // 첫 row는 필드명, skip한다는 뜻.
+                .lineMapper(lineMapper) //line 한 줄씩 읽도록
+                .build();
+
+        itemReader.afterPropertiesSet();    // 정상적으로 설정됐는지 검증하는 메서드
+
+        /*
+            이 기종간의 통신시 DB 데이터를 받을 수 없어, 이렇게 사용하는 경우가 많다.
+         */
+        return itemReader;
+    }
+```
+
+### JDBC 데이터 읽기 - Cursor 기반 / paging 기반
+
+```
+#### Cursor 기반 조회
+배치 처리가 완료될 때 까지 DB Connection이 연결
+DB Connection 빈도가 낮아 성능이 좋은 반면, 긴 Connection 유지 시간 필요
+하나의 Connection에서 처리되기 때문에, Thread Safe 하지 않음
+모든 결과를 메모리에 할당하기 때문에, 더 많은 메모리를 사용
+
+#### Paging 기반 조회
+페이징 단위로 DB Connection을 연결
+DB Connection 빈도가 높아 비교적 성능이 낮은 반면, 짧은 Connection 유지 시간 필요
+매번 Connection을 하기 때문에 Thread Safe
+페이징 단위의 결과만 메모리에 할당하기 때문에, 비교적 더 적은 메모리를 사용
+
+```
