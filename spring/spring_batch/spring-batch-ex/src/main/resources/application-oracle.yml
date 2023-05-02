@@ -1,10 +1,9 @@
 spring:
   datasource:
-    hikari:
-      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521:XE
-      driver-class-name: oracle.jdbc.driver.OracleDriver
-      username: mytest
-      password: mytest
+    username: mytest
+    password: mytest
+    url: jdbc:oracle:thin:@localhost:1521/XE
+    driver-class-name: oracle.jdbc.OracleDriver
   batch:
     jdbc:
       initialize-schema: never

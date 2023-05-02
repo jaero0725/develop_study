@@ -37,15 +37,19 @@ public class HelloConfiguration {
                 .build();
     }
 
+    /*
+        StepExecution : BATCH_STEP_EXECUTION
+        ExectuionContext : BATH_STEP_EXECUTON_CONTEXT
+
+     */
     // step은 Job의 실행단위 한개의 job은 N개의 step을 갖는다.
     // step name
     // tasklet => step의 실행단위 (task 기반)
     @Bean
     public Step helloStep(){
-        log.info("##### [STEP 1] 1. helloStep");
         return stepBuilderFactory.get("helloStep")
                 .tasklet((contribution, chunkContext) -> {
-                    log.info("##### [STEP 1] 2. hello spring batch");
+                    log.info("##### [STEP 1] RUN hello spring batch");
                     return RepeatStatus.FINISHED;
                 }).build();
     }

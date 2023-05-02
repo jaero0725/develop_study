@@ -3,4 +3,4 @@ spring:
     job:
       names: ${job.name=NONE}
     jdbc:
-      initialize-schema: always
+      initialize-schema:
