@@ -297,3 +297,5 @@ public @interface JobScope {
  ItemReader 구현체가 없으면 직접 개발
  ItemStream은 ExecutionContext로 read, write 정보를 저장
 ```
+
+#### FlatFileItemReader 클래스로 파일에 저장된 데이터를 읽어 객체에 매핑 - csv 파일 read 
