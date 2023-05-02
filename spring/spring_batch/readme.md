@@ -335,6 +335,8 @@ private FlatFileItemReader<Person> csvFileItemReader() throws Exception {
 ```
 
 ### JDBC 데이터 읽기 - Cursor 기반 / paging 기반
+![image](https://user-images.githubusercontent.com/55049159/235682518-c158d882-12f9-4579-aa3c-2d7952982f20.png)
+![image](https://user-images.githubusercontent.com/55049159/235682637-ddfeceec-ff42-43aa-8fe4-9fe245363de7.png)
 
 ```
 #### Cursor 기반 조회
