@@ -362,3 +362,51 @@ DB Connection 빈도가 높아 비교적 성능이 낮은 반면, 짧은 Connect
 ```
 
 - 단건처리가 아니기 떄문에 성능이 높다
+
+## ItemProcessor interface 구조
+
+```
+	ItemProcessor는 Spring Batch에서 사용되는 인터페이스로, 배치 처리 중에 각 항목에 대한 비즈니스 로직을 적용하는 데 사용됩니다.
+	ItemProcessor 인터페이스는 두 가지 타입 매개 변수를 사용하며, 각각 입력 및 출력 유형을 나타냅니다. 
+	이 인터페이스는 process 메서드를 정의하며, 이를 구현하여 각 항목에 대한 처리를 수행해야 합니다.
+
+	ItemProcessor 인터페이스의 기본 구조는 다음과 같습니다:
+```
+
+```java
+public interface ItemProcessor<I, O> {
+
+    O process(I item) throws Exception;
+
+}
+/*
+여기서 I는 입력 타입, O는 출력 타입입니다.
+
+ItemProcessor를 사용하려면 이 인터페이스를 구현하는 클래스를 작성해야 합니다. 
+예를 들어, Person 객체를 입력으로 받아 연령을 기준으로 필터링하고 출력으로 동일한 Person 객체를 반환하는 PersonItemProcessor를 작성하고 싶다면 다음과 같이 구현할 수 있습니다:
+
+*/
+import org.springframework.batch.item.ItemProcessor;
+
+public class PersonItemProcessor implements ItemProcessor<Person, Person> {
+
+    @Override
+    public Person process(Person item) throws Exception {
+        if (item.getAge() >= 18) {
+            return item;
+        }
+        return null;
+    }
+
+}
+
+/*
+위 예제에서 process 메서드는 18세 이상의 Person 객체를 반환하고, 그렇지 않은 경우 null을 반환합니다. 
+pring Batch는 반환된 값이 null인 경우 해당 항목을 출력에 포함하지 않습니다.
+
+이렇게 구현한 ItemProcessor는 Spring Batch의 ItemReader로부터 읽은 항목들에 대해 처리 로직을 적용한 후, 처리된 결과를 ItemWriter에 전달합니다.
+이를 통해 각 항목에 대해 필요한 비즈니스 로직을 쉽게 적용할 수 있습니다.
+*/
+
+
+```
