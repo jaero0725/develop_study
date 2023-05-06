@@ -24,7 +24,7 @@ public class SavePersonConfigurationTest {
     @Test
     public void test_allow_duplicate() throws Exception {
 
-        // given jobParamter 줌
+        // given jobParameter 줌
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("allow_duplicate", "false")
                 .toJobParameters();
