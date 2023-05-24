@@ -6,11 +6,11 @@ import javax.persistence.*;  //**
  * User: HolyEyE
  * Date: 13. 5. 24. Time: 오후 7:43
  */
-@Entity
-@Table(name="MEMBER")
+@Entity	//entity table 과 매핑한다고 JPA게 알려줌
+@Table(name="MEMBER")  // table info
 public class Member {
-
-    @Id
+ 
+    @Id // primary key 
     @Column(name = "ID")
     private String id;
 

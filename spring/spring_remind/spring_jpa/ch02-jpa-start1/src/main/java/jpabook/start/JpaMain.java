@@ -10,6 +10,16 @@ public class JpaMain {
 
     public static void main(String[] args) {
 
+    	/*
+			앤티티 매니저 생성 과정 
+			
+			1. persistence 
+			설정정보 조회 -> META_INF/persistence.xml
+			2. 생성
+			=> EntityManagerFactory
+			3. 생성
+			=> EntityManager, EntityManager, EntityManager
+    	 */
         //엔티티 매니저 팩토리 생성
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
         EntityManager em = emf.createEntityManager(); //엔티티 매니저 생성
