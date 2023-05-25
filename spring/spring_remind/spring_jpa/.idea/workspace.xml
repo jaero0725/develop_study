@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6dee400c-0841-4634-8e2e-a1dd440f583d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/src/main/java/jpabook/start/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/src/main/java/jpabook/start/JpaMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/src/main/java/jpabook/start/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/src/main/java/jpabook/start/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/maven/jpabook/ch02-jpa-start1/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/maven/jpabook/ch02-jpa-start1/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ch02-jpa-start1/target/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-jpa-start2/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-jpa-start2/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-jpa-start2/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-jpa-start2/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-jpa-start2/target/classes/META-INF/maven/jpabook/ch04-jpa-start2/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-jpa-start2/target/classes/META-INF/maven/jpabook/ch04-jpa-start2/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-model1/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-model1/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-model1/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-model1/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch04-model1/target/classes/META-INF/maven/jpabook/ch04-model1/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch04-model1/target/classes/META-INF/maven/jpabook/ch04-model1/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch05-model2/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch05-model2/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch05-model2/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch05-model2/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch05-model2/target/classes/META-INF/maven/jpabook/ch05-model2/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch05-model2/target/classes/META-INF/maven/jpabook/ch05-model2/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch06-model3/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch06-model3/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch06-model3/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch06-model3/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch06-model3/target/classes/META-INF/maven/jpabook/ch06-model3/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch06-model3/target/classes/META-INF/maven/jpabook/ch06-model3/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch07-model4/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch07-model4/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch07-model4/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch07-model4/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch07-model4/target/classes/META-INF/maven/jpabook/ch07-model4/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch07-model4/target/classes/META-INF/maven/jpabook/ch07-model4/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch08-model5/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch08-model5/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch08-model5/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch08-model5/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch08-model5/target/classes/META-INF/maven/jpabook/ch08-model5/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch08-model5/target/classes/META-INF/maven/jpabook/ch08-model5/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch09-model6/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch09-model6/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch09-model6/target/classes/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch09-model6/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch09-model6/target/classes/META-INF/maven/jpabook/ch09-model6/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch09-model6/target/classes/META-INF/maven/jpabook/ch09-model6/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch11-jpa-shop/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch11-jpa-shop/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch11-jpa-shop/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch11-jpa-shop/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch11-jpa-shop/target/m2e-wtp/web-resources/META-INF/maven/jpabook/ch11-jpa-shop/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch11-jpa-shop/target/m2e-wtp/web-resources/META-INF/maven/jpabook/ch11-jpa-shop/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch12-springdata-shop/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ch12-springdata-shop/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch12-springdata-shop/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ch12-springdata-shop/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch12-springdata-shop/target/m2e-wtp/web-resources/META-INF/maven/jpabook/ch12-springdata-shop/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ch12-springdata-shop/target/m2e-wtp/web-resources/META-INF/maven/jpabook/ch12-springdata-shop/pom.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2QGmfQlBt59egTBD81OGOw1Mrgo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6dee400c-0841-4634-8e2e-a1dd440f583d" name="Default Changelist" comment="" />
+      <created>1684988395576</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684988395576</updated>
+      <workItem from="1684988397029" duration="120000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

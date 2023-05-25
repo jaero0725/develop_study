@@ -66,7 +66,7 @@ public class JpaMain {
         System.out.println("members.size=" + members.size());
 
         //삭제
-        em.remove(member);
+        //em.remove(member);
 
     }
 }
