@@ -1,4 +1,4 @@
-# 2장
+# 2장. 객체 생성과 파괴
 
 <a href="https://github.com/jaero0725/Database-Infra_Study/blob/main/effective_java/02/item01.md">item01</a><br>
 <a href="https://github.com/jaero0725/Database-Infra_Study/blob/main/effective_java/02/item02.md">item02</a><br>
