@@ -16,6 +16,7 @@ SpellCheck가 Dictionary를 사용하고, 이를 의존하는 리소스 또는 �
     }
 ```
 
+### 적절한 구현
 ```java
 public class SpellChecker {
         privte static final Lexion dictionary = ...;
