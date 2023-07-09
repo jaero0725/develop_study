@@ -75,13 +75,40 @@ StringLiteral == internedString // true
 
 <hr>
 
-생성자 대신 정적 팩토리 메서드를 제공하는 불변 클래스에서는 정적 패터리 메서드를 사용해 부릴요한 객체 생성을 피할 수 있다.
+생성자 대신 정적 팩토리 메서드를 제공하는 불변 클래스에서는 정적 패터리 메서드를 사용해 불필요한 객체 생성을 피할 수 있다.
 
 ``` java
 
 Boolean(String) 생성자 대신 Boolean.valueOf(String) 팩터리 메서드를 사용하는 것이 좋다.
 - Boolean생성자 java9 Deprecated
-
+=> Item1때 valueOf같은 메서드들을 통해 재사용 가능했었음
 ```
 
 생성자는 호출할 떄마다 새로운 객체를 만들지만, 팩터리 메서드는 그렇지 않다. 
+
+- 생성 비용이 비싼 객체도 있다. -> 비싼 객체가 반복해서 필요하면 캐싱하여 재사용하는 것이 좋다.
+- 아래 캐싱하여 재사용하는 예시가 있습니다. 
+
+``` java
+static boolean isRomanNumeral(String s) {
+        return s.matches("^(?=.)M*(C[MD] }D?C{0,3})"
+                        + "(X[CL]}L?X{0,3})(I[XV]|V?I{0,3})$");
+
+String.matches 메서드는 성능이 중요한 상황에서 반복해 사용하기 적합하지 않다.
+이 메서드가 내부에서 만드는 정규표현식용 Pattern 인스턴스는, 한 번 쓰고 버려져 곧바로 GC 대상이된다.
+Pattern은 입력받은 정규표현식에 해당하는 유한 상태 머신을 만들기 떄문에 인스턴스 생성 비용이 높다.
+
+=> 성능 개선을 위해 필요한 정규표현식을 표현하는 Pattern인스턴스를 클래스 초기화 과정에서 직접 생성해 캐싱해두고 나중에 isRomanNumeral 메서드가 호출될 떄마다 이 인스턴스를 재사용한다. 
+
+
+public class RomanNumberals {
+	private static final Pattern ROMAN = Pattern.compile("^(?=.)M*(C[MD] }D?C{0,3})"
+                        + "(X[CL]}L?X{0,3})(I[XV]|V?I{0,3})$");;
+    
+    static boolean isRomanNumberal(Strings) {
+    	return ROMAN.matcher(s).matches();
+    }
+}
+
+=> 이렇게 하면 isRomanNumeral이 빈번히 호출되는 상황에서 성능을 끌어올릴 수 있다.(6.5배)
+```
