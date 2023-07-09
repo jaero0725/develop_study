@@ -70,7 +70,18 @@ StringLiteral == internedString // true
 - Heap 내 작은 캐시..
 ![image](https://github.com/jaero0725/develop_study/assets/55049159/c7512e01-c636-4361-ab1b-eb5967c8f3ca)
 
-## 결론? 문자열은 메모리를 할당을 최적화할 수 있는 String Constant Pool에 올려서 사용하자.
+## 결론? 
+- 문자열은 메모리를 할당을 최적화할 수 있는 String Constant Pool에 올려서 사용하자.
 
 <hr>
 
+생성자 대신 정적 팩토리 메서드를 제공하는 불변 클래스에서는 정적 패터리 메서드를 사용해 부릴요한 객체 생성을 피할 수 있다.
+
+``` java
+
+Boolean(String) 생성자 대신 Boolean.valueOf(String) 팩터리 메서드를 사용하는 것이 좋다.
+- Boolean생성자 java9 Deprecated
+
+```
+
+생성자는 호출할 떄마다 새로운 객체를 만들지만, 팩터리 메서드는 그렇지 않다. 
