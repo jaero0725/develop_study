@@ -7,6 +7,8 @@
 ## NullPointerException 처리 
 ##  Optional
 
+<hr>
+
 ## 메모리 누수의 첫번째 주범 : 스택
 ### 메모리 누수는 어디서 일어날까?
 
