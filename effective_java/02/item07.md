@@ -13,8 +13,8 @@
 ### 메모리 누수는 어디서 일어날까?
 
 ### 가비지 컬렉터의 동작? 
-https://d2.naver.com/helloworld/329631
-https://d2.naver.com/helloworld/1329
+https://d2.naver.com/helloworld/329631  <br>
+https://d2.naver.com/helloworld/1329  <br>
 https://d2.naver.com/helloworld/1326256
 
 ## 메모리 누수의 두번째 주범 : 캐시
@@ -25,6 +25,7 @@ https://d2.naver.com/helloworld/1326256
 <hr>
 
 #### REF
-https://jaehun2841.github.io/2019/01/07/effective-java-item7/#WeakHashMap
-https://lelecoder.com/20
-https://pro-dev.tistory.com/110
+https://jaehun2841.github.io/2019/01/07/effective-java-item7/#WeakHashMap <br>
+https://lelecoder.com/20  <br>
+https://pro-dev.tistory.com/110  <br>
+https://pro-dev.tistory.com/108
