@@ -106,6 +106,43 @@ public class Stack {
 		}
 }
 ```
+
+### Java의 Stack 클래스
+``` java
+    public synchronized E pop() {
+        E       obj;
+        int     len = size();
+
+        obj = peek();
+        removeElementAt(len - 1);
+
+        return obj;
+    }
+    
+        public synchronized void removeElementAt(int index) {
+        modCount++;
+        if (index >= elementCount) {
+            throw new ArrayIndexOutOfBoundsException(index + " >= " +
+                                                     elementCount);
+        }
+        else if (index < 0) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        int j = elementCount - index - 1;
+        if (j > 0) {
+            System.arraycopy(elementData, index + 1, elementData, index, j);
+        }
+        elementCount--;
+        elementData[elementCount] = null; /* to let gc do its work */
+    }
+```
+
+### Stack 클래스는 왜 메모리 누수에 취약한 걸까?
+- 스택이 자기 자신의 메모리를 직접 관리하기 때문
+- Stack 클래스는 배열(elements)로 저장소 풀을 만들어 원소들을 관리함
+- 배열의 활성 영역부분에 속한 원소들은 사용되고, 비활성 영역은 쓰이지 않는데 문제점은 이러한 비활성 영역을 가비지 컬렉터가 알 방법이 없다는 것
+- 보통 자신의 메모리를 직접 관리하는 클래스는 프로그래머가 항상 메모리 누수에 주의해야 함
+
 ### 그럼 항상 Null처리 하는 것이 좋나? 
 
 - 모든 객체를 null로 만들면 프로그램을 필요 이상으로 지저분하게 만들 뿐이다.
