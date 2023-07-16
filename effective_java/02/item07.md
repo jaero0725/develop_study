@@ -149,15 +149,16 @@ public class Stack {
 - 자기 메모리를 직접 관리하는 클래스라면 프로그래머는 항시 메모리 누수에 주의해야 한다.
 - 메모리 누수는 철저한 코드리뷰, 힙 프로파일링 도구를 통해 디버깅을 해야 발견할 수 있기 때문에 메모리 누수를 철저히 신경써야 합니다.
 
+<hr> 
+
 #### REF
 
 ### 가비지 컬렉터의 동작? 
+item 7에 메모리 누수 Memory Leak에 대한 내용이 일부 나오는데 같이 보면 좋을거 같은 링크
 https://d2.naver.com/helloworld/329631  <br>
 https://d2.naver.com/helloworld/1329  <br>
-https://d2.naver.com/helloworld/1326256
+https://d2.naver.com/helloworld/1326256  <br>
 
-
-item 7에 메모리 누수 Memory Leak에 대한 내용이 일부 나오는데 같이 보면 좋을거 같은 링크들이 있어 공유합니다.
 https://jaehun2841.github.io/2019/01/07/effective-java-item7/#WeakHashMap <br>
 https://lelecoder.com/20  <br>
 https://pro-dev.tistory.com/110  <br>
