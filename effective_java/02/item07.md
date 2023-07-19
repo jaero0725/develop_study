@@ -189,13 +189,10 @@ public class Stack {
 <hr> 
 
 #### REF
-
-### 가비지 컬렉터의 동작? 
-item 7에 메모리 누수 Memory Leak에 대한 내용이 일부 나오는데 같이 보면 좋을거 같은 링크
+item 7에 메모리 누수 Memory Leak에 대한 내용이 일부 나오는데 같이 보면 좋을거 같은 링크 <br>
 https://d2.naver.com/helloworld/329631  <br>
 https://d2.naver.com/helloworld/1329  <br>
 https://d2.naver.com/helloworld/1326256  <br>
-
 https://jaehun2841.github.io/2019/01/07/effective-java-item7/#WeakHashMap <br>
 https://lelecoder.com/20  <br>
 https://pro-dev.tistory.com/110  <br>
