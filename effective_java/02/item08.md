@@ -148,4 +148,4 @@ cleaner는 명시적으로 객체의 자원을 해제할 수 있으며, 제어�
 <hr>
 
 #### REF
-[finalizer와 cleaner 사용을 피하라](https://pro-dev.tistory.com/111)https://pro-dev.tistory.com/111
+[finalizer와 cleaner 사용을 피하라](https://pro-dev.tistory.com/111)
