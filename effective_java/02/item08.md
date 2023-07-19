@@ -1,8 +1,32 @@
 # 아이템7. finalizer와 cleaner 사용을 피하라
-
-
-### 그게뭔디..? 
 - 자바는 접근할 수 없게 된 객체를 회수하는 역할을 가비지 컬렉터가 담당하며 비메모리 자원을 회수하는 용도는 try-with-resources, try-finally로 해결한다.
+- 
+### finalize 메소드란?
+
+- 자바의 모든 클래스는 최상위 클래스인 Object 클래스의 여러 메서드를 포함하고 있음 
+- 객체 소멸자라고 말하는 finalize 메서드도 그 메서드들 중 하나
+- 존재이유가 불분명한 메서드
+- 자바에서 메모리는 개발자가 직접 관리하지 않는다. 접근할 수 없게 된 객체를 회수하는 역할을 가비지 컬렉터 가 담당하고, 프로그래머 에게는 아무런 작업도 요구하지 않는다.
+- "종료자는 사용하면 안 된다. 예측이 불가능하고 대체로 위험하고 일반적으로 필요하지 않다."
+
+#### 권장: GC를 이용해서 메모리 회수하기
+``` java
+ObjectEx obj4; // ObjectEx 객체와 obj4 레퍼런스
+obj4 = new ObjectEx(); // ObjectEx()클래스에 obj4레퍼런스 생성
+obj4 = new ObjectEx(); // ObjectEx()클래스에 obj4레퍼런스 재 생성, 따라서 이전 관계는 끊어짐
+
+// 언젠가 GC가 적절한 타이밈에 메모리를 회수해 줌
+```
+
+
+#### 비권장: 소멸자를 호출해서 자원 회수하기
+``` java
+@Override
+	protected void finalize() throws Throwable {
+		System.out.println(" -- finalize() method --");
+		super.finalize();
+  }
+```
 
 ### 📌사용하지 말아야 하는 이유
 - 자바는 (1) finalizer, (2)cleaner 두 가지 객체 소멸자를 제공한다. 
@@ -30,7 +54,7 @@
  - 또한 이 finalizer는 정적 필드에 자신의 참조를 할당해 가비지 컬렉터가 수집하지 못하게 막을 수 있다.
  - finalizer를 final로 선언해 해결할 수 있다.
 
-### 📌정상적으로 자원 반납하는 방식
+### 정상적으로 자원 반납하는 방식
 
 ```
 파일이나 스레드 등 종료해야 할 자원을 담고 있는 객체 클래스에서 finalizer나 cleaner를 대신해줄 묘안은 AutoCloseable을 구현해주고,
@@ -39,7 +63,7 @@
 여기서 close 메서드에서는 이 객체는 더 이상 유효하지 않음을 필드에 기록하고, 다른 메서드는 이 필드를 검사해 객체가 닫힌 후 불렸다면 IllegalStateException을 던지면 된다.
 
 ```
-### 📌Cleaner, Finalizer가 적절한 경우
+### Cleaner, Finalizer가 적절한 경우
 - 그렇다면 cleaner와 finalizer는 언제 사용할까? 적절한 경우는 두 가지가 존재하며, 아래와 같다.
 
 #### (1) 자원의 소유자가 close 메서드를 호출하지 않는 것에 대한 대비망
@@ -95,6 +119,7 @@ public class Room implements AutoCloseable{
 
 
 ```
+# Chat gpt
 Java에서 finalizer와 cleaner는 객체의 소멸을 다루는 메커니즘입니다. 이들은 메모리 관리와 관련이 있으며, 객체가 더 이상 필요하지 않을 때 자원을 해제하는 데 사용됩니다.
 하지만 이 두 가지 메커니즘은 목적과 동작 방식에서 차이가 있습니다.
 
