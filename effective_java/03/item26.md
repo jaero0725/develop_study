@@ -28,6 +28,10 @@ private final List<String> = ...;
 - 로 타입을 쓰는 걸 언어 차원에서 막아두진 않았지만, 절대로 사용하면 안된다.
 - 로 타입을 쓰면 제네릭이 안겨주는 안전성과 표현력을 모두 잃게 됨
 - 이 기능은 왜 있는걸까? 제네릭이 사용되기 이전 코드와 호환되기 위한 기능.
+	- 제네릭은 자바가 나오면서 같이 나온 창립멤버가 아니다! 
+	- 즉 길고긴 자바의 역사에서 제네릭이 들어와서 본격적으로 사용된것은 거의 자바 출시부터 10년정도가 걸린 상황인데, 기존의 코드와의 호환성을 위해서는 로 타입도 동작을 해야만 했다.
+	-  바로 이 마이그레이션 호환성을 위해서 로 타입을 지원하고 제네릭 구현에는 소거 방식을 사용하기로 했다.
+
 - List 같은 로 타입은 사용해서는 안되지만, List<Object> 처럼 임의 객체를 허용하는 매개변수화는 괜찮다. (ex 2 소스)
   - List는 제네릭 타입에서 완전히 발을 뺀 것이고, List<Object>는 모든 타입을 허용한다는 의사를 컴파일러에 명시한 것
   - List에는 List<String>을 넘길 수 있지만, List<Object>를 받는 메서드에는 넘길 수 없음
@@ -101,9 +105,40 @@ private static void unsafeAdd(List<Object> list, Object o) {
 }
 ```
 
-- 다음 코드는 제네릭을 이용해 리팩터링을 한 소스다.
-
 ``` java
+public class Foods {
+    private final List store = new ArrayList();
+
+    public Foods() { }
+
+    public void add(Object obj) {
+        store.add(obj);
+    }
+
+    public void print(){
+        for (Iterator it = store.iterator(); it.hasNext();) {
+            Food food = (Food) it.next(); // ClassCastException 발생
+            System.out.println("food = " + food);
+        }
+    }
+}
+...
+
+public class FoodApp {
+    public static void main(String[] args) {
+        Foods foods = new Foods();
+
+        foods.add(new Weapon("도끼", 10));
+        foods.add(new Food("피자", LocalDateTime.of(2021, Month.JUNE, 25,17,30), 1000));
+
+        foods.print();
+    }
+}
+
+// ###################################### 
+// 다음 코드는 제네릭을 이용해 리팩터링을 한 소스다.
+// ######################################
+
 public class Foods {
     private final List<Food> store = new ArrayList();
 
@@ -121,21 +156,8 @@ public class Foods {
     }
 }
 
-/*
-Foods 객체는 이제 Food 라는 실제(actual) 타입 매개변수를 선언해서 명시적은 형변환 코드도 제거해주었고 기존의 foods.add(new Weapon("도끼", 10));코드는 컴파일러에서 인지해서 에러라는 것을 고지해 줄 것이다.
-즉 로 타입을 쓸 경우 제네릭의 장점(안전성과 표현력)을 모두 포기한다는 의미다.
-*/
+```
 
-  ```
-
-  Q.그럼 로 타입은 왜 있는걸까?
-  A.바로 호환성 때문이다. 
-  
-- 제네릭은 자바가 나오면서 같이 나온 창립멤버가 아니다! 
-- 즉 길고긴 자바의 역사에서 제네릭이 들어와서 본격적으로 사용된것은 거의 자바 출시부터 10년정도가 걸린 상황인데, 기존의 코드와의 호환성을 위해서는 로 타입도 동작을 해야만 했다.
--  바로 이 마이그레이션 호환성을 위해서 로 타입을 지원하고 제네릭 구현에는 소거 방식을 사용하기로 했다.
-
-### List와 List<Object>
 
 ### 대안책 : 비한정적 와일드카드 타입
 - 매개변수화 타입이 ?인 제네릭 타입
